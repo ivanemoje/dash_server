@@ -1,0 +1,27 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "interacting with db",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivan",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "dotenv": "^8.0.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
+    "pdfkit": "^0.10.0",
+    "semantic-ui-react": "^0.87.1"
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "knex": "^0.16.5",
+    "nodemon": "^1.19.0"
+  }
+}
