@@ -4,16 +4,16 @@ const allManifests = (req, res, pool) => {
    
     query_run = `SELECT 
                     distinct (a.manifest_id),  
-                    a.manifest_type, 
+                    a.intervention_code,
                     b.region, 
                     a.manifest_file, 
-                    a.manifest_date, 
-                    a.is_suplimentary 
+                    a.manifest_date
                   FROM manifests a
                   INNER JOIN fdp b 
                   ON a.manifest_fdp = b.settlement_id`; 
-            
-  
+
+
+
     pool.query(query_run, function (error, results, fields) {
       if (error) throw error;
       if (results.length) {
