@@ -8,17 +8,8 @@ const app = express();
 const port = 3000;
 
 const config = require ('./config.json')
-
 const manifest = require ('./controllers/manifest');
-const recon = require ('./controllers/cycleRecon');
-
 const account = require ('./controllers/accountDetail');
-const household = require ('./controllers/householdDetail');
-
-//test
-const household2 = require ('./controllers/hhDetail');
-
-
 
 app.use (cors());
 
@@ -49,14 +40,7 @@ const pool  = mysql.createPool({
 app.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + port); });
 
 app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
-// Dashboard endpoints
-app.get('/allmanifests', (req, res) => { manifest.allManifests ( req, res , pool) })
-app.get('/recon', (req, res) => { recon.cycleRecon ( req, res , pool) })
-// Details endpoints
+// Get endpoints
+app.get('/allmanifests', (req, res) => { manifest.allManifests(req, res, pool) })
+// Post endpoints
 app.post('/account_detail', (req, res) => { account.accountDetail (req, res, db) })
-app.post('/household_detail', (req, res) => { household.householdDetail (req, res, db) })
-//test 
-app.get('/household', (req, res) => { household2.hhDetail (req, res, pool) })
-
-
-

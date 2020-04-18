@@ -4,12 +4,13 @@
         "host": "localhost",
         "user": "root",
         "password": "",
-        "database": "wfp-bis"
+        "database": "verifaid"
     },
     "sqlconfig": {
         "host": "localhost",
         "user": "root",
         "password": "",
-        "database": "wfp-bis"
+        "database": "verifaid"
     }
 }
+
