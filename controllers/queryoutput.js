@@ -1,12 +1,8 @@
 const allQueries = (req, res, pool) => {
       
-    console.log('All fdp_codes entries requested by', req.connection.remoteAddress);
+    console.log('All entries requested by', req.connection.remoteAddress);
    
-    query_run = `SELECT 
-                    distinct (a.fdp_code) 
-                    FROM gdt_eod_manifests a`; 
-
-
+    query_run = `SELECT * FROM gdt_ddr`; 
 
     pool.query(query_run, function (error, results, fields) {
       if (error) throw error;
@@ -17,7 +13,8 @@ const allQueries = (req, res, pool) => {
         res.status(404).json('Not found');
         }      
     })
-}
+  }
+  
   module.exports = {
     allQueries 
   }

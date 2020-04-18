@@ -1,43 +1,92 @@
 const sqlGdt = (req, res, pool) => {
-      
-    console.log('Data posted by', req.connection.remoteAddress);
-    
-    const hostname = req.body.hostname;
-    const modality = req.body.modality;
-    console.log(req.body);
-    console.log("Values:", hostname, modality);
+  
+  console.log('Data posted by', req.connection.remoteAddress);
 
+  const {
+    hostname, 
+    manifest_name,
+    area,
+    field,
+    settlement,
+    modality, 
+    fdp,
+    cycle,
+    cycle_year,
+    servedHH,
+    servedPopn,
+    plannedHH,
+    plannedPopn,
+    percent_HH,
+    percent_Popn,
+    begin_date,
+    end_date
+  } = req.body;
 
-    if (  
-      !hostname ||
-		  !modality
-		  )
-	{
-	  return res.status(400).json('Incorrect form submission');
-	}
-   
-    query_run = `INSERT INTO gdt_test (hostname, modality) VALUES ("${hostname}", "${modality}");`; 
-
-
-
+  // console.log(req.body);
+  // console.log("Values:", hostname, modality);
+  
+  if (
+    !hostname ||
+    !modality
+    )
+    {
+      return res.status(400).json('Incorrect form submission');
+    }
+  
+  query_run = `
+    INSERT INTO gdt_ddr (
+      hostname, 
+      modality, 
+      manifest_name, 
+      area, 
+      field,
+      settlement,
+      fdp,
+      cycle,
+      cycle_year,
+      servedHH,
+      servedPopn,
+      plannedHH,
+      plannedPopn,
+      percent_HH,
+      percent_Popn,
+      begin_date,
+      end_date) 
+      VALUES (
+        "${hostname}", 
+        "${modality}", 
+        "${manifest_name}",
+        "${area}",
+        "${field}",
+        "${settlement}", 
+        "${fdp}",
+        "${cycle}",
+        "${cycle_year}", 
+        "${servedHH}",
+        "${servedPopn}",
+        "${plannedHH}", 
+        "${plannedPopn}",
+        "${percent_HH}",
+        "${percent_Popn}",
+        "${begin_date}",
+        "${end_date}"
+        );`; 
+        
     pool.query(query_run, function (error, results) {
       // Bug. If statement conditions working in opposite
       if (error) throw error;
-
       if (results.length) {
-        res.status(404).json('Not found');
-            // res.json (results);
-            }
-      else {
-        // res.status(404).json('Not found');
-        res.status(200).json('inserted');
         // res.json (results);
-        }      
+        res.status(404).json('Not found');
+      } else {
+        // res.status(404).json('Not found');
+        res.status(200).json('Data Inserted');
+      }
     })
-}
+  }
+  
   module.exports = {
     sqlGdt : sqlGdt
   }
 
 
-  
