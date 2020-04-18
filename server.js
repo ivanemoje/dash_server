@@ -8,8 +8,10 @@ const app = express();
 const port = 3000;
 
 const config = require ('./config.json')
-const manifest = require ('./controllers/manifest');
-const account = require ('./controllers/accountDetail');
+const queryoutput = require ('./controllers/queryoutput');
+const postentry = require ('./controllers/postentry');
+const postgdt = require ('./controllers/postgdt');
+const sqlgdt = require ('./controllers/sqlgdt');
 
 app.use (cors());
 
@@ -41,6 +43,8 @@ app.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + p
 
 app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
 // Get endpoints
-// app.get('/allmanifests', (req, res) => { manifest.allManifests(req, res, pool) })
+app.get('/allqueries', (req, res) => { queryoutput.allQueries(req, res, pool) })
 // Post endpoints
-// app.post('/account_detail', (req, res) => { account.accountDetail (req, res, db) })
+app.post('/postentry', (req, res) => { postentry.postEntry (req, res, db) })
+app.post('/postgdt', (req, res) => { postgdt.postGdt (req, res, db) })
+app.post('/sqlgdt', (req, res) => { sqlgdt.sqlGdt (req, res, pool) })

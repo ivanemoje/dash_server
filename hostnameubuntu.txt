@@ -1,0 +1,18 @@
+hostname	ubuntu
+manifest_name	Bidibidi-09-19-f-Zone 1 FDP 2
+area	Arua
+field	Koboko
+settlement	Bidibidi
+fdp	Zone 1 FDP 2
+cycle	9
+cycle_year	19
+modality
+plannedHH	344
+servedHH	320
+plannedPopn	1203
+servedPopn	1100
+percent_HH	93
+percent_Popn	91
+begin_date	15-04-20
+end_date	20-04-20
+create_date	18-04-20

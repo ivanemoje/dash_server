@@ -4,13 +4,13 @@
         "host": "localhost",
         "user": "root",
         "password": "",
-        "database": "verifaid"
+        "database": "gdt_analysis_dumps"
     },
     "sqlconfig": {
         "host": "localhost",
         "user": "root",
         "password": "",
-        "database": "verifaid"
+        "database": "gdt_analysis_dumps"
     }
 }
 
