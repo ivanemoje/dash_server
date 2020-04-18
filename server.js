@@ -41,6 +41,6 @@ app.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + p
 
 app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
 // Get endpoints
-app.get('/allmanifests', (req, res) => { manifest.allManifests(req, res, pool) })
+// app.get('/allmanifests', (req, res) => { manifest.allManifests(req, res, pool) })
 // Post endpoints
-app.post('/account_detail', (req, res) => { account.accountDetail (req, res, db) })
+// app.post('/account_detail', (req, res) => { account.accountDetail (req, res, db) })
