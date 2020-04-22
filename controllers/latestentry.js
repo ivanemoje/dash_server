@@ -1,6 +1,6 @@
 const latestEntry = (req, res, pool) => {
       
-  console.log('All entries requested by', req.connection.remoteAddress);
+  console.log('Latest entries requested by', req.connection.remoteAddress);
  
   query_run = `SELECT 
                 a.manifest_name,  a.settlement,  a.fdp, a.area, a.field, a.modality, a.begin_date, a.end_date, a.servedHH, a.servedPopn, 
