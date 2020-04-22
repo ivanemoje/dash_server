@@ -8,7 +8,7 @@ const port = 3000;
 
 const config = require ('./config.json')
 const queryoutput = require ('./controllers/queryoutput');
-const sqlgdt = require ('./controllers/sqlgdt');
+const addentry = require ('./controllers/addentry');
 
 app.use (cors());
 
@@ -17,8 +17,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json({ limit: "50mb" }));
-
-
 
 const pool  = mysql.createPool({
   connectionLimit: 100,
@@ -34,4 +32,4 @@ app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected 
 // Get endpoints
 app.get('/allentries', (req, res) => { queryoutput.allQueries(req, res, pool) })
 // Post endpoints
-app.post('/sqlgdt', (req, res) => { sqlgdt.sqlGdt (req, res, pool) })
+app.post('/addentry', (req, res) => { addentry.addEntry (req, res, pool) })

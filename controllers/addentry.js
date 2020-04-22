@@ -1,4 +1,4 @@
-const sqlGdt = (req, res, pool) => {
+const addEntry = (req, res, pool) => {
   
   console.log('Data posted by', req.connection.remoteAddress);
 
@@ -86,7 +86,7 @@ const sqlGdt = (req, res, pool) => {
   }
   
   module.exports = {
-    sqlGdt : sqlGdt
+    addEntry : addEntry
   }
 
 
