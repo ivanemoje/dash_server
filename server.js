@@ -8,6 +8,7 @@ const port = 3000;
 
 const config = require ('./config.json')
 const queryoutput = require ('./controllers/queryoutput');
+const fdpno = require ('./controllers/queryfdpno');
 const addentry = require ('./controllers/addentry');
 const latestentry = require ('./controllers/latestentry');
 
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected 
 // Get endpoints
 app.get('/allentries', (req, res) => { queryoutput.allQueries(req, res, pool) })
 app.get('/latestentry', (req, res) => { latestentry.latestEntry(req, res, pool) })
+app.get('/fdpno', (req, res) => { fdpno.fdpNo(req, res, pool) })
 // Post endpoints
 app.post('/addentry', (req, res) => { addentry.addEntry (req, res, pool) })
 
