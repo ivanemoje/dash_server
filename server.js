@@ -9,6 +9,7 @@ const port = 3000;
 const config = require ('./config.json')
 const queryoutput = require ('./controllers/queryoutput');
 const addentry = require ('./controllers/addentry');
+const latestentry = require ('./controllers/latestentry');
 
 app.use (cors());
 
@@ -31,5 +32,7 @@ app.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + p
 app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
 // Get endpoints
 app.get('/allentries', (req, res) => { queryoutput.allQueries(req, res, pool) })
+app.get('/latestentry', (req, res) => { latestentry.latestEntry(req, res, pool) })
 // Post endpoints
 app.post('/addentry', (req, res) => { addentry.addEntry (req, res, pool) })
+
