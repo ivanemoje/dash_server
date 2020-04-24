@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 
 const config = require ('./config.json')
-const queryoutput = require ('./controllers/queryoutput');
+const all = require ('./controllers/all');
 const fdpno = require ('./controllers/queryfdpno');
 const addentry = require ('./controllers/addentry');
 const latest = require ('./controllers/latest');
@@ -32,7 +32,7 @@ app.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + p
 
 app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
 // Get endpoints
-app.get('/allentries', (req, res) => { queryoutput.allQueries(req, res, pool) })
+// app.get('/allentries', (req, res) => { all.allQueries(req, res, pool) })
 app.get('/latest', (req, res) => { latest.latestEntry(req, res, pool) })
 app.get('/fdpno', (req, res) => { fdpno.fdpNo(req, res, pool) })
 // Post endpoints
