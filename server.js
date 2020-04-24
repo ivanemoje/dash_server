@@ -10,39 +10,15 @@ const config = require ('./config.json')
 const queryoutput = require ('./controllers/queryoutput');
 const fdpno = require ('./controllers/queryfdpno');
 const addentry = require ('./controllers/addentry');
-const latestentry = require ('./controllers/latestentry');
+const latest = require ('./controllers/latest');
 
-const crypto = require('crypto'),
-      fs = require("fs"),
-      http = require("http");
+app.use (cors());
 
-var fs = require('fs');
-var http = require('http');
-var https = require('https');
-var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-var certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
-
-var credentials = {key: privateKey, cert: certificate};
-var express = require('express');
-var app = express();
-var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
-
-
-httpServer.listen(3000);
-httpsServer.listen(3000);
-
-var server = http.createServer(app);
-server.setSecure(credentials);
-server.addListener("request", handler);
-
-server.use (cors());
-
-server.use(bodyParser.urlencoded({
+app.use(bodyParser.urlencoded({
   limit: '200mb', extended: true
 }));
 
-server.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.json({ limit: "50mb" }));
 
 const pool  = mysql.createPool({
   connectionLimit: 100,
@@ -52,13 +28,13 @@ const pool  = mysql.createPool({
   database : config.sqlconfig.database
 });
 
-server.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + port); });
+app.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + port); });
 
-server.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
+app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
 // Get endpoints
-server.get('/allentries', (req, res) => { queryoutput.allQueries(req, res, pool) })
-server.get('/latestentry', (req, res) => { latestentry.latestEntry(req, res, pool) })
-server.get('/fdpno', (req, res) => { fdpno.fdpNo(req, res, pool) })
+app.get('/allentries', (req, res) => { queryoutput.allQueries(req, res, pool) })
+app.get('/latest', (req, res) => { latest.latestEntry(req, res, pool) })
+app.get('/fdpno', (req, res) => { fdpno.fdpNo(req, res, pool) })
 // Post endpoints
-server.post('/addentry', (req, res) => { addentry.addEntry (req, res, pool) })
+app.post('/addentry', (req, res) => { addentry.addEntry (req, res, pool) })
 
