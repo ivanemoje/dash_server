@@ -3,7 +3,7 @@ const latestEntry = (req, res, pool) => {
   console.log('Latest entries requested by', req.connection.remoteAddress);
  
   query_run = `SELECT 
-                a.manifest_name,  a.settlement,  a.fdp, a.area, a.field, a.modality, a.begin_date, a.end_date, a.servedHH, a.servedPopn, 
+                a.id, a.manifest_name,  a.settlement,  a.fdp, a.area, a.field, a.modality, a.begin_date, a.end_date, a.servedHH, a.servedPopn, 
                 a.plannedHH, a.plannedPopn, a.percent_HH, a.percent_Popn, a.hostname,
                 a.cycle, a.cycle_year,   a.create_date 
                 FROM gdt_ddr a 
