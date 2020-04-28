@@ -33,7 +33,7 @@ app.listen(port, '0.0.0.0', () => {  console.log("Server listening on port " + p
 // Get endpoints
 // app.get('/', (req, res) => {   res.send('Root\n');  console.log('Root connected to by', req.connection.remoteAddress) })
 app.get('/', (req, res) => { latest.latestEntry(req, res, pool) })
-// app.get('/allentries', (req, res) => { all.allQueries(req, res, pool) })
+app.get('/all', (req, res) => { all.allQueries(req, res, pool) })
 app.get('/latest', (req, res) => { latest.latestEntry(req, res, pool) })
 app.get('/fdpno', (req, res) => { fdpno.fdpNo(req, res, pool) })
 // Post endpoints
