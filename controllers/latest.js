@@ -10,17 +10,21 @@ const latestEntry = (req, res, pool) => {
                 LEFT OUTER JOIN gdt_ddr b 
                 ON a.manifest_name = b.manifest_name 
                 AND a.create_date < b.create_date 
-                WHERE a.cycle = '05' AND b.manifest_name IS NULL ORDER BY a.create_date desc`; 
+                WHERE a.cycle = '06' AND b.manifest_name IS NULL ORDER BY a.create_date desc`; 
+    
 
   pool.query(query_run, function (error, results, fields) {
     if (error) throw error;
     if (results.length) {
+        console.log(results);
+      
         // console.log(results.RowDataPacket);
         //   console.log(results.create_date);
-          res.json (results);
+          // res.json (results);
           }
     else {
-      res.status(404).json('Not found');
+      // res.json (results);
+      res.status(404).json('No data found');
       }      
   })
 }
