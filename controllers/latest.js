@@ -10,7 +10,7 @@ const latestEntry = (req, res, pool) => {
                 LEFT OUTER JOIN gdt_ddr b 
                 ON a.manifest_name = b.manifest_name 
                 AND a.create_date < b.create_date 
-                WHERE a.cycle = '06' AND b.manifest_name IS NULL ORDER BY a.create_date desc`; 
+                WHERE a.cycle = '07' AND b.manifest_name IS NULL ORDER BY a.create_date desc`; 
     
 
   pool.query(query_run, function (error, results, fields) {
