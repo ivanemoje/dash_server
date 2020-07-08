@@ -16,11 +16,11 @@ const latestEntry = (req, res, pool) => {
   pool.query(query_run, function (error, results, fields) {
     if (error) throw error;
     if (results.length) {
-        console.log(results);
+        // console.log(results);
       
         // console.log(results.RowDataPacket);
         //   console.log(results.create_date);
-          // res.json (results);
+          res.json (results);
           }
     else {
       // res.json (results);
