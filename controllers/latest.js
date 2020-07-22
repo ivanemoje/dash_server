@@ -2,16 +2,25 @@ const latestEntry = (req, res, pool) => {
       
   console.log('Latest entries requested by', req.connection.remoteAddress);
  
-  query_run = `SELECT 
+  query_run2 = `SELECT 
                 a.id, a.hostname, a.manifest_name,  a.settlement,  a.fdp, a.area, a.field, a.modality, a.servedHH, a.servedPopn, 
                 a.plannedHH, a.plannedPopn, a.percent_HH, a.percent_Popn, 
                 a.cycle, a.cycle_year,  a.begin_date, a.end_date,  a.create_date 
-                FROM gdt_ddr a 
+                FROM gdt_ddr_v2 a 
                 LEFT OUTER JOIN gdt_ddr b 
                 ON a.manifest_name = b.manifest_name 
                 AND a.create_date < b.create_date 
                 WHERE a.cycle = '07' AND b.manifest_name IS NULL ORDER BY a.create_date desc`; 
-    
+
+  query_run = `SELECT 
+                a.id, a.hostname, a.manifest_name,  a.settlement,  a.fdp, a.modality, a.servedHH, a.servedHHToday, a.servedPopn, a.servedPopnToday, 
+                a.plannedHH, a.plannedPopn, a.percent_HH, a.percent_Popn, 
+                a.cycle, a.cycle_year,  a.distribution_date,  a.create_date 
+                FROM gdt_ddr a 
+                LEFT OUTER JOIN gdt_ddr b 
+                ON a.manifest_name = b.manifest_name 
+                AND a.create_date < b.create_date 
+                WHERE  b.manifest_name IS NULL ORDER BY a.create_date desc`;   
 
   pool.query(query_run, function (error, results, fields) {
     if (error) throw error;
