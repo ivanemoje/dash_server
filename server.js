@@ -10,6 +10,7 @@ const config = require ('./config.json')
 const all = require ('./controllers/all');
 const fdpno = require ('./controllers/queryfdpno');
 const addentry = require ('./controllers/addentry');
+const addentryv2 = require ('./controllers/addentryv2');
 const latest = require ('./controllers/latest');
 
 app.use (cors());
@@ -38,4 +39,5 @@ app.get('/latest', (req, res) => { latest.latestEntry(req, res, pool) })
 app.get('/fdpno', (req, res) => { fdpno.fdpNo(req, res, pool) })
 // Post endpoints
 app.post('/addentry', (req, res) => { addentry.addEntry (req, res, pool) })
+app.post('/addentryv2', (req, res) => { addentryv2.addEntryv2 (req, res, pool) })
 
