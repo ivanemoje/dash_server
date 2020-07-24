@@ -13,7 +13,7 @@ const latestEntry = (req, res, pool) => {
                 WHERE a.cycle = '07' AND b.manifest_name IS NULL ORDER BY a.create_date desc`; 
 
   query_run = `SELECT 
-                a.id, a.hostname, a.manifest_name,  a.settlement,  a.fdp, a.modality, a.servedHH, a.servedHHToday, a.servedPopn, a.servedPopnToday, 
+                a.id, a.hostname, a.manifest_name,  a.settlement,  a.field , a.fdp, a.modality, a.servedHH, a.servedHHToday, a.servedPopn, a.servedPopnToday, 
                 a.plannedHH, a.plannedPopn, a.percent_HH, a.percent_Popn, 
                 a.cycle, a.cycle_year,  a.distribution_date,  a.create_date 
                 FROM gdt_ddr a 
