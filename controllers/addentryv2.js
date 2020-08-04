@@ -26,8 +26,9 @@ const addEntryv2 = (req, res, pool) => {
   // console.log("Values:", hostname, modality);
   
   if (
-    !hostname ||
-    !modality
+    !hostname 
+    // ||
+    // !modality
     )
     {
       return res.status(400).json('Incorrect form submission');
