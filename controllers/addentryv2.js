@@ -25,14 +25,14 @@ const addEntryv2 = (req, res, pool) => {
   // console.log(req.body);
   // console.log("Values:", hostname, modality);
   
-  if (
-    !hostname 
-    // ||
-    // !modality
-    )
-    {
-      return res.status(400).json('Incorrect form submission');
-    }
+  // if (
+  //   !hostname 
+  //   // ||
+  //   // !modality
+  //   )
+  //   {
+  //     return res.status(400).json('Incorrect form submission');
+  //   }
   
   query_run = `
     INSERT INTO gdt_ddr (
